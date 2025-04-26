@@ -11,7 +11,7 @@
 
 - Full **TypeScript** support
 - **Handlers** for commands, events, and more
-- **Integrated Database** connection
+- **Integrated Database** connection: My own database - [dotdatabase](https://github.com/NZ-Linix/dotdatabase)
 - Clean, scalable, and easy-to-extend architecture
 - Optimized for **Discord.js v14**
 
