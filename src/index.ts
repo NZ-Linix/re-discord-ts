@@ -47,6 +47,7 @@ client.once(Events.ClientReady, async () => {
 
     setTimeout(() => {
         console.log(chalk.green.bold("[🌿]") + " " + "Application is ready.");
+        console.log("")
     }, 10);
 
 });
