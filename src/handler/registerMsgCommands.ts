@@ -11,7 +11,6 @@ const handlerRegisterMsgCommands = async (client: Client) => {
     if (!client.isReady()) {
         await new Promise((resolve) => client.once("ready", resolve));
     }
-    
         
     const commands = new Map();
     
