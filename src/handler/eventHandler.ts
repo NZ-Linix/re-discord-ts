@@ -28,7 +28,7 @@ const eventHandler = async (client: Client) => {
 
             } catch ( err ) {
                 
-                console.log(chalk.red.bold("[🌿]") + " " + chalk.red("There was an error while registering a message command."));
+                console.log(chalk.red.bold("[🌿]") + " " + chalk.red("There was an error while registering an event."));
                 console.log()
                 console.log(chalk.grey("------------------------------"))
                 console.log()
