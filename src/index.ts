@@ -85,6 +85,9 @@ handlerRegisterSlashCommands(client);
 import handlerRegisterMsgCommands from "./handler/registerMsgCommands";
 handlerRegisterMsgCommands(client);
 
+import eventHandler from "./handler/eventHandler";
+eventHandler(client);
+
 // Login to Discord ----------------------------------------------------------------
 
 client.login(process.env.CLIENT_TOKEN).then(() => {
