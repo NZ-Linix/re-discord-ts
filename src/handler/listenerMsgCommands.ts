@@ -15,7 +15,10 @@ const listenerMsgCommands = async (client: Client, commands: Map<any, any>, guil
 
         }
 
-        const command = commands.get(message.content.split(" ")[0].slice(config.messageCommandPrefix.length));
+        if ( !message.content.startsWith(config.messageCommandPrefix) ) return;
+
+        const commandName = message.content.slice(config.messageCommandPrefix.length).split(" ")[0];
+        const command = commands.get(commandName);
 
         if ( !command ) return;
 

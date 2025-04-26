@@ -74,12 +74,6 @@ if ( config.status.rotations.length > 0 ) {
 
 // Execute listener and handlers ---------------------------------------------------
 
-if ( config.messageCommandPrefix.includes(" ") ) {
-
-    console.log(chalk.red.bold("[🌿]") + " " + chalk.red("Message command prefix cannot contain spaces."));
-
-}
-
 import handlerRegisterSlashCommands from "./handler/registerSlashCommands";
 handlerRegisterSlashCommands(client);
 

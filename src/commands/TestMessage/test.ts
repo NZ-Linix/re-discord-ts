@@ -8,7 +8,6 @@ export default {
     data: {
         name: "test",
         description: "Test command",
-        customPrefix: "",
     },
 
     async execute( message: Message, client: Client, args: string[] ) {
