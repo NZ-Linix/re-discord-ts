@@ -39,10 +39,6 @@ const client = new Client({
     ]
 })
 
-const events         = new Map(); // Events will be stored here
-const slashCommands  = new Map(); // Slash commands will be stored here
-const msgCommands    = new Map(); // Message commands will be stored here
-
 console.log() // Empty line for better readability
 
 // Ready event ---------------------------------------------------------------------
@@ -75,6 +71,11 @@ if ( config.status.rotations.length > 0 ) {
 
 }
 
+// Execute listener and handlers ---------------------------------------------------
+
+import handlerRegisterSlashCommands from "./handler/registerSlashCommands";
+handlerRegisterSlashCommands(client);
+
 // Login to Discord ----------------------------------------------------------------
 
 client.login(process.env.CLIENT_TOKEN).then(() => {
@@ -83,6 +84,12 @@ client.login(process.env.CLIENT_TOKEN).then(() => {
 
 }).catch((err) => {
 
-    console.log(chalk.red.bold("[🌿]") + " " + chalk.red("Failed to login: ") + err);
+    console.log(chalk.red.bold("[🌿]") + " " + chalk.red("Failed to login."));
+    console.log()
+    console.log(chalk.grey("------------------------------"))
+    console.log()
+    console.log(err);
+    console.log()
+    console.log(chalk.grey("------------------------------"))
 
 });
