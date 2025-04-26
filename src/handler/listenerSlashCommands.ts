@@ -14,7 +14,7 @@ const listenerSlashCommands = async (client: Client, commands: Map<any, any>) =>
         if ( !command ) return;
 
         try {
-
+            
             await command.execute(interaction, client);
 
         } catch ( err ) {

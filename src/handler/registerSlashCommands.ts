@@ -14,6 +14,7 @@ const restApi = new REST({ version: "10" }).setToken(process.env.CLIENT_TOKEN as
 // Register slash commands ---------------------------------------------------------
 
 const handlerRegisterSlashCommands = async (client: Client) => {
+
     if (!client.isReady()) {
         await new Promise((resolve) => client.once("ready", resolve));
     }
@@ -28,7 +29,7 @@ const handlerRegisterSlashCommands = async (client: Client) => {
 
                 const fileContents = fs.readFileSync(`./src/commands/${directory}/${file}`, "utf-8");
 
-                if (!fileContents.startsWith("//_SLASH_COMMAND")) {return;}
+                if (!fileContents.startsWith("//_SLASH_COMMAND")) {continue;}
 
                 const module = await import(`../commands/${directory}/${file}`);
                 const command = module.default;
@@ -57,7 +58,7 @@ const handlerRegisterSlashCommands = async (client: Client) => {
 
             } catch ( err ) {
 
-                console.log(chalk.red.bold("[🌿]") + " " + chalk.red("There was an error while registering a command."));
+                console.log(chalk.red.bold("[🌿]") + " " + chalk.red("There was an error while registering a slash command."));
                 console.log()
                 console.log(chalk.grey("------------------------------"))
                 console.log()
