@@ -20,6 +20,7 @@ const handlerRegisterSlashCommands = async (client: Client) => {
     }
 
     const commands = new Map();
+    const slashCommandsData = [];
 
     for (const directory of fs.readdirSync("./src/commands")) {
 
@@ -29,51 +30,64 @@ const handlerRegisterSlashCommands = async (client: Client) => {
 
                 const fileContents = fs.readFileSync(`./src/commands/${directory}/${file}`, "utf-8");
 
-                if (!fileContents.startsWith("//_SLASH_COMMAND")) {continue;}
+                if (!fileContents.startsWith("//_SLASH_COMMAND")) { continue; }
 
                 const module = await import(`../commands/${directory}/${file}`);
                 const command = module.default;
 
                 commands.set(command.data.name, command);
+                slashCommandsData.push(command.data);
 
-                if ( config.guildId !== "" ) {
+            } catch (err) {
 
-                    if (!client.user?.id) return;
-
-                    await restApi.put(
-                        Routes.applicationGuildCommands(client.user?.id, config.guildId),
-                        { body: [command.data] }
-                    );
-
-                } else {
-
-                    if (!client.user?.id) return;
-
-                    await restApi.put(
-                        Routes.applicationCommands(client.user?.id),
-                        { body: [command.data] }
-                    );
-
-                }
-
-            } catch ( err ) {
-
-                console.log(chalk.red.bold("[🌿]") + " " + chalk.red("There was an error while registering a slash command."));
-                console.log()
-                console.log(chalk.grey("------------------------------"))
-                console.log()
+                console.log(chalk.red.bold("[🌿]") + " " + chalk.red("There was an error while processing a slash command."));
+                console.log();
+                console.log(chalk.grey("------------------------------"));
+                console.log();
                 console.log(err);
-                console.log()
-                console.log(chalk.grey("------------------------------"))
- 
+                console.log();
+                console.log(chalk.grey("------------------------------"));
+
             }
 
         }
 
     }
 
+    try {
+
+        if (!client.user?.id) return;
+
+        if (config.guildId !== "") {
+
+            await restApi.put(
+                Routes.applicationGuildCommands(client.user.id, config.guildId),
+                { body: slashCommandsData }
+            );
+
+        } else {
+
+            await restApi.put(
+                Routes.applicationCommands(client.user.id),
+                { body: slashCommandsData }
+            );
+
+        }
+
+    } catch (err) {
+
+        console.log(chalk.red.bold("[🌿]") + " " + chalk.red("There was an error while registering slash commands."));
+        console.log();
+        console.log(chalk.grey("------------------------------"));
+        console.log();
+        console.log(err);
+        console.log();
+        console.log(chalk.grey("------------------------------"));
+
+    }
+
     listenerSlashCommands(client, commands);
 
-}
+};
 
 export default handlerRegisterSlashCommands;
