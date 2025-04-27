@@ -1,4 +1,4 @@
-# Discord.js v14 TypeScript Bot
+# Discord.js v14 TypeScript Handler
 
 ![Language](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Discord.js](https://img.shields.io/badge/discord.js-5865F2?style=for-the-badge&logo=discord&logoColor=white)
