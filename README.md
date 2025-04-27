@@ -17,6 +17,32 @@
 
 ---
 
+## 🚀 Getting started
+
+First, you want to either clone this repository or download the repository  
+as a .zip file.  
+
+In the (extracted) folder you need to run:
+
+```sh
+npm init -y
+```
+```sh
+npm install
+```
+
+to set the project up.  
+  
+Afterwards you only need to add the bot's token the .env (RENAME.env)  
+and configure everything to you'r needs in src/config.ts
+
+You can run the bot with with:
+```sh
+tsx src/index.ts
+```
+
+---
+
 ## 📂 Project Structure
 
 ```
