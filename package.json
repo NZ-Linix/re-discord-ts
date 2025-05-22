@@ -1,6 +1,6 @@
 {
   "name": "re-discord-ts",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A discord.js typescript handler with database.",
   "homepage": "https://github.com/NZ-Linix/re-discord-ts#readme",
   "bugs": {
@@ -19,11 +19,12 @@
   },
   "dependencies": {
     "@discordjs/rest": "^2.5.0",
+    "@types/firebase": "^2.4.32",
     "@types/node": "^22.15.2",
     "chalk": "^5.4.1",
     "discord.js": "^14.19.1",
-    "dotdatabase": "^1.0.2",
     "dotenv": "^16.5.0",
+    "firebase": "^11.8.1",
     "table": "^6.9.0",
     "tsc": "^2.0.4",
     "tsx": "^4.19.3",

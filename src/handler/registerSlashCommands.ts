@@ -30,10 +30,17 @@ const handlerRegisterSlashCommands = async (client: Client) => {
 
                 const fileContents = fs.readFileSync(`./src/commands/${directory}/${file}`, "utf-8");
 
-                if (!fileContents.startsWith("//_SLASH_COMMAND")) { continue; }
-
                 const module = await import(`../commands/${directory}/${file}`);
                 const command = module.default;
+
+                const { SlashCommandBuilder } = await import('@discordjs/builders');
+                if (
+                    typeof command.data?.toJSON !== "function" ||
+                    command.data.constructor.name !== "SlashCommandBuilder"
+                ) {
+                    console.log("regSlash: Not a Slash Command");
+                    continue;
+                }
 
                 commands.set(command.data.name, command);
                 slashCommandsData.push(command.data);

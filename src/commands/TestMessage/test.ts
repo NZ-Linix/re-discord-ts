@@ -1,6 +1,3 @@
-//_MESSAGE_COMMAND
-// The line above is for the handler. DO NOT REMOVE IT. You can delete this line.
-
 import { Message, Client } from "discord.js";
 
 export default {
